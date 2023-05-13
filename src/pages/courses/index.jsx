@@ -11,6 +11,7 @@ import api from "../api/axios";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Modal } from "antd";
 import { SiGoogleclassroom } from "react-icons/si";
+import { message } from "antd";
 
 const Home = () => {
   const [subjects, setSubjets] = useState([]);
@@ -24,15 +25,6 @@ const Home = () => {
     className: "bg-red-400", // add a custom class to the button
     size: "large", // set a custom size
     danger: true, // set a danger style
-  };
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
   };
 
   // api functions
@@ -66,11 +58,22 @@ const Home = () => {
         classCode: classCode,
       });
       if (res) {
-        console.log(res);
+        message.success("Action completed successfully!");
       }
     } else {
       setError("Enter your class code");
     }
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+    joinClass()
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -265,6 +268,7 @@ const Home = () => {
           <input
             className="px-7 w-full rounded-md py-2 border border-blue-900"
             placeholder="Enter Class Code"
+            onChange={(e)=>{setClassCode(e.target.value)}}
           />
         </Modal>
       </div>
