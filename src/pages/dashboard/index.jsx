@@ -10,12 +10,12 @@ import HitMaps from "@/component/charts/HitMaps";
 const Result = () => {
   const [profile, setProfile] = useState("");
   const [progress, setProgress] = useState(0);
-
   const getProfile = () => {
     api.get("/auth/users/me").then((res) => {
       setProfile(res.data);
     });
   };
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) =>

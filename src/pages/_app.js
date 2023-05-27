@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
     if (isLogin) {
       router.push("/dashboard");
     }else{
-      router.push("/signin")
+      router.push("/signin");
     }
   }, []);
   return (

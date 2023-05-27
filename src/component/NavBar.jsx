@@ -9,7 +9,7 @@ import {
   AiOutlineAppstore,
   AiOutlineAccountBook,
 } from "react-icons/ai";
-
+import {MdPayment} from "react-icons/md";
 import { BsChatLeft } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/features/authSlice";
@@ -41,7 +41,7 @@ const NavBar = () => {
                   </li>
                 </Link>
                 <Link href="/courses">
-                  <li className="p-4   hover:text-yellow-600 duration-200 cursor-pointer active">
+                  <li className="p-4 hover:text-yellow-600 duration-200 cursor-pointer active">
                     <div className="flex justify-start gap-4 items-center">
                       <div>
                         <AiOutlineAccountBook size={25} />
@@ -61,6 +61,19 @@ const NavBar = () => {
                       </div>
                       <div>
                         <span className="text-md">Profiles</span>
+                      </div>
+                    </div>
+                  </li>
+                </Link>
+
+                <Link href="/payment">
+                  <li className="p-4 hover:text-yellow-600 duration-200 cursor-pointer active">
+                    <div className="flex justify-start gap-4 items-center">
+                      <div>
+                        <MdPayment size={25} />
+                      </div>
+                      <div>
+                        <span className="text-md">Payment</span>
                       </div>
                     </div>
                   </li>
