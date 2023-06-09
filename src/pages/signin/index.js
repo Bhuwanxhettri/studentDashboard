@@ -27,6 +27,7 @@ const index = () => {
         if (res) {
           localStorage.setItem("isLoggedIn", true);
           router.push("/dashboard");
+          window.location.reload();
           dispatch(login(res?.data));
         }
         setError(res?.data.message);

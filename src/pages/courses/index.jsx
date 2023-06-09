@@ -140,8 +140,6 @@ const Home = () => {
               )}
             </div>
           </section>
-
-         
         </div>
         <Modal
           title="
