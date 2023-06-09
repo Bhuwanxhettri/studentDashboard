@@ -10,6 +10,15 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { message } from "antd";
 import Link from "next/link";
 const Home = () => {
+  const images = [
+    "https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    "https://images.unsplash.com/photo-1512314889357-e157c22f938d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+    "https://plus.unsplash.com/premium_photo-1684444605542-93725082d214?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    "https://www.wikihow.com/images/thumb/1/18/Take-Better-Notes-Step-1-Version-2.jpg/v4-460px-Take-Better-Notes-Step-1-Version-2.jpg.webp",
+    "https://clickup.com/blog/wp-content/uploads/2020/01/note-taking.png",
+    "https://uploads-ssl.webflow.com/5ad143610f7efd77b6f188f3/5e3d6dc6a5399caacdecc754_TDo4dlBwPnYdHabfakoZWUb2-zaHC2Ebj6wTcAQrDcLJPJtier6s7zejNCDzu44b8Pn9miZ0go7GndFC3fBONs16ZPixxSdvdzzwBF1JVaDnQgWlOSFUCUzCziUM7PyZBmi1jfxC.jpeg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi5d0zfemSuge8n5fiPd1GnW_SRwtQ4xLwvICjW66lUUZzJ7Kg2tXjX5qHK1vTy2O8bSg&usqp=CAU",
+  ];
   const [subjects, setSubjets] = useState([]);
   const [classCode, setClassCode] = useState("");
   const [relodePage, setRelodePage] = useState(false);
@@ -128,7 +137,7 @@ const Home = () => {
                         <div>
                           <Link href={`assignment/${subject.id}`}>
                             <Card
-                              img={"https://wallpapercave.com/wp/wp2036900.jpg"}
+                              img={images[id]}
                               name={subject?.subject_name}
                             />
                           </Link>

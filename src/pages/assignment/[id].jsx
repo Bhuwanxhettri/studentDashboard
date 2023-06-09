@@ -57,54 +57,22 @@ const Assignment = () => {
     };
 
     return (
-      <div key={assignment.id} className=" p-4 rounded-lg mb-4">
-        <div>
-          <div className="flex justify-between">
-            <a href={assignment.pdf} target="_blank">
-              <div className="relative w-48 h-48 cursor-pointer">
-                <img
-                  src={assignment.pdf}
-                  alt={assignment.title}
-                  className="object-cover w-full h-full rounded-lg"
-                />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-75 transition-opacity duration-300">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-16 w-16 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </a>
-            <div className="mt-4">
-              <h3 className="text-lg font-semibold mb-2">{assignment.title}</h3>
-              <div
-                className=" px-6"
-                dangerouslySetInnerHTML={{ __html: assignment.word }}
+      <div
+        key={assignment.id}
+        className="p-4 rounded-lg mb-4 bg-white shadow-md"
+      >
+        <div className="flex justify-between">
+          <a href={assignment.pdf} target="_blank" rel="noopener noreferrer">
+            <div className="relative w-48 h-48 cursor-pointer">
+              <img
+                src={assignment.pdf}
+                alt={assignment.title}
+                className="object-cover w-full h-full rounded-lg"
               />
-            </div>
-          </div>
-          <div className="flex items-center justify-center mt-4">
-            <label className="relative flex flex-col items-center px-4 py-2 bg-white text-blue-500 rounded-lg shadow-lg tracking-wide border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white">
-              {file ? (
-                <img
-                  src={URL.createObjectURL(file)}
-                  alt="Selected file"
-                  className="mb-2 w-10 text-xs h-10 rounded-full object-cover"
-                />
-              ) : (
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-75 transition-opacity duration-300 bg-black bg-opacity-50">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-10 w-10 text-green-500"
+                  className="h-16 w-16 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -116,26 +84,54 @@ const Assignment = () => {
                     d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                   />
                 </svg>
-              )}
-              <span className="mt-2 text-base leading-normal">
-                {file ? file.name : "Select a file"}
-              </span>
-              <input
-                type="file"
-                className="hidden"
-                onChange={handleFileChange}
-              />
-            </label>
-            <button
-              className="ml-4 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              onClick={handleUpload}
-              disabled={!file}
-            >
-              Upload
-            </button>
+              </div>
+            </div>
+          </a>
+          <div className="ml-4">
+            <h3 className="text-lg font-semibold mb-2">{assignment.title}</h3>
+            <div
+              className="px-6 text-gray-700"
+              dangerouslySetInnerHTML={{ __html: assignment.word }}
+            />
           </div>
         </div>
-
+        <div className="flex items-center justify-center mt-4">
+          <label className="relative flex flex-col items-center px-4 py-2 bg-white text-blue-500 rounded-lg shadow-lg tracking-wide border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white">
+            {file ? (
+              <img
+                src={URL.createObjectURL(file)}
+                alt="Selected file"
+                className="mb-2 w-[200px] text-xs h-[200px]  object-cover"
+              />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-10 w-10 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
+              </svg>
+            )}
+            <span className="mt-2 text-base leading-normal">
+              {file ? file.name : "Select a file"}
+            </span>
+            <input type="file" className="hidden" onChange={handleFileChange} />
+          </label>
+          <button
+            className="ml-4 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={handleUpload}
+            disabled={!file}
+          >
+            Upload
+          </button>
+        </div>
         <div className="mt-4">
           <p className="text-gray-800 text-xs text-right">
             Due Date:{" "}
@@ -146,7 +142,6 @@ const Assignment = () => {
             })}
           </p>
         </div>
-        <hr className="border-1 border-green-400 my-5" />
       </div>
     );
   };
