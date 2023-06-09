@@ -1,21 +1,18 @@
 import Card from "../../component/Card";
 import NavBar from "@/component/NavBar";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import book from "../../assets/icon/book.png";
-import teacher from "../../assets/icon/teacher.png";
-import miss from "../../assets/icon/miss.png";
-import baord from "../../assets/icon/board.png";
+
 import { fetcher } from "../api";
 import api from "../api/axios";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Modal } from "antd";
 import { SiGoogleclassroom } from "react-icons/si";
 import { message } from "antd";
-
+import Link from "next/link";
 const Home = () => {
   const [subjects, setSubjets] = useState([]);
   const [classCode, setClassCode] = useState("");
+  const [relodePage, setRelodePage] = useState(false);
   const [error, setError] = useState("");
   const [profile, setProfile] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,7 +55,8 @@ const Home = () => {
         classCode: classCode,
       });
       if (res) {
-        message.success("Action completed successfully!");
+        message.success("Class Join sucess fully!");
+        setRelodePage(true);
       }
     } else {
       setError("Enter your class code");
@@ -70,7 +68,7 @@ const Home = () => {
   };
   const handleOk = () => {
     setIsModalOpen(false);
-    joinClass()
+    joinClass();
   };
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -81,7 +79,7 @@ const Home = () => {
     getAllSubjet();
     getAllAssignment();
     getAllNotes();
-  }, []);
+  }, [relodePage]);
 
   return (
     <>
@@ -110,7 +108,7 @@ const Home = () => {
               </div>
               <div>
                 <img
-                  className="rounded-full w-10 mx-auto"
+                  className="rounded-full w-10 h-10 mx-auto"
                   src={profile?.avatar}
                 />
               </div>
@@ -121,17 +119,19 @@ const Home = () => {
               My courses
             </h4>
             <hr></hr>
-            <div className="grid grid-cols-4 gap-4 my-8">
+            <div className="grid overflow-x-auto  grid-cols-4 gap-4 my-8">
               {subjects.length > 0 && (
                 <>
                   {subjects?.map((subject, id) => {
                     return (
                       <>
                         <div>
-                          <Card
-                            img={"https://wallpapercave.com/wp/wp2036900.jpg"}
-                            name={subject?.subject_name}
-                          />
+                          <Link href={`assignment/${subject.id}`}>
+                            <Card
+                              img={"https://wallpapercave.com/wp/wp2036900.jpg"}
+                              name={subject?.subject_name}
+                            />
+                          </Link>
                         </div>
                       </>
                     );
@@ -140,121 +140,8 @@ const Home = () => {
               )}
             </div>
           </section>
-          <div>
-            <h4 className="text-xl my-3 font-sans font-bold text-[#094354]">
-              Your Assignment
-            </h4>
-            <hr></hr>
 
-            <div className="grid grid-cols-4 gap-4 my-8">
-              <div className="cursor-pointer rounded-xl shadow-md bg-slate-100 p-5">
-                <h4 className="text-[#124748] font-bold">English Lesson 2</h4>
-                <span className="text-gray-600 text-xs">Question & Answer</span>
-              </div>
-              <div className=" cursor-pointer rounded-xl shadow-md bg-slate-100 p-5">
-                <h4 className="text-[#124748] font-bold">English Lesson 2</h4>
-                <span className="text-gray-600 text-xs">Question & Answer</span>
-              </div>
-              <div className="cursor-pointer rounded-xl shadow-md bg-slate-100 p-5">
-                <h4 className="rounded-xl  text-[#124748] font-bold">
-                  English Lesson 2
-                </h4>
-                <span className="text-gray-600 text-xs">Question & Answer</span>
-              </div>
-              <div className=" cursor-pointer rounded-xl shadow-md  bg-slate-100 p-5">
-                <h4 className="text-[#124748] font-bold">English Lesson 2</h4>
-                <span className="text-gray-600 text-xs">Question & Answer</span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h4 className="text-xl my-3 font-sans font-bold text-[#094354]">
-              Notes For you
-            </h4>
-            <hr></hr>
-            <div className="grid grid-cols-4 gap-4 my-8">
-              <div className="cursor-pointer rounded-xl shadow-md bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-5">
-                <div className="flex items-center py-2 justify-between">
-                  <div>
-                    <h4 className="text-[#180909] font-bold">
-                      English Lesson 2
-                    </h4>
-                    <span className="text-[#ffff] text-xs">
-                      Question & Answer
-                    </span>
-                  </div>
-                  <div>
-                    <Image
-                      src={book}
-                      alt="Picture of the author"
-                      width={65}
-                      height={65}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className=" cursor-pointer rounded-xl shadow-md bg-gradient-to-r from-teal-200 to-teal-500 p-5">
-                <div className="flex items-center py-2 justify-between">
-                  <div>
-                    <h4 className="text-[#180909]  font-bold">
-                      English Lesson 2
-                    </h4>
-                    <span className="text-[#ffff] text-xs">
-                      Question & Answer
-                    </span>
-                  </div>
-                  <div>
-                    <Image
-                      src={teacher}
-                      alt="Picture of the author"
-                      width={65}
-                      height={65}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="cursor-pointer rounded-xl shadow-md bg-gradient-to-r from-cyan-500 to-blue-500  p-5">
-                <div className="flex items-center py-2 justify-between">
-                  <div>
-                    <h4 className="text-[#180909]  font-bold">
-                      English Lesson 2
-                    </h4>
-                    <span className="text-[#ffff] text-xs">
-                      Question & Answer
-                    </span>
-                  </div>
-                  <div>
-                    <Image
-                      src={miss}
-                      alt="Picture of the author"
-                      width={65}
-                      height={65}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className=" cursor-pointer rounded-xl shadow-md  bg-gradient-to-l from-violet-600 via-red-300 to-indigo-700 p-5">
-                <div className="flex items-center py-2 justify-between">
-                  <div>
-                    <h4 className="text-[#180909]  font-bold">
-                      English Lesson 2
-                    </h4>
-                    <span className="text-[#ffff] text-xs">
-                      Question & Answer
-                    </span>
-                  </div>
-                  <div>
-                    <Image
-                      src={baord}
-                      alt="Picture of the author"
-                      width={65}
-                      height={65}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         
         </div>
         <Modal
           title="
@@ -268,7 +155,9 @@ const Home = () => {
           <input
             className="px-7 w-full rounded-md py-2 border border-blue-900"
             placeholder="Enter Class Code"
-            onChange={(e)=>{setClassCode(e.target.value)}}
+            onChange={(e) => {
+              setClassCode(e.target.value);
+            }}
           />
         </Modal>
       </div>

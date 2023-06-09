@@ -15,7 +15,6 @@ const Result = () => {
       setProfile(res.data);
     });
   };
-  
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) =>
@@ -91,94 +90,54 @@ const Result = () => {
             <h2 className="text-xl font-bold font-serif mx-5 py-2">Reports</h2>
             <Reports />
           </div>
-          <div className="bg-white shadow-xl w-full rounded-md p-5">
-            <h3 className="font-bold text-xl py-2 ">Learning Progression</h3>
-            <hr></hr>
-            <div className="flex justify-between my-3 bg-slate-200 rounded-md p-3 pt-5 items-center">
-              <div>
-                <span className="bg-gray-500 text-xs text-white font-bold px-2 py-3 rounded-full">
-                  50%
-                </span>
-              </div>
-              <div className="">
-                <h3>Business Studies</h3>
-                <div className="w-[230px] rounded-md h-2 bg-gray-300">
-                  <div
-                    className={`h-full rounded-md ${colorClass}`}
-                    style={{ width: `${progress}%` }}
-                  ></div>
-                  <div></div>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-between my-3 bg-slate-200 rounded-md p-3 pt-5 items-center">
-              <div>
-                <span className="bg-gray-500 text-xs text-white font-bold px-2 py-3 rounded-full">
-                  50%
-                </span>
-              </div>
-              <div className="">
-                <h3>Business Studies</h3>
-                <div className="w-[230px] rounded-md h-2 bg-gray-300">
-                  <div
-                    className={`h-full rounded-md ${colorClass}`}
-                    style={{ width: `${progress}%` }}
-                  ></div>
-                  <div></div>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-between my-3 bg-slate-200 rounded-md p-3 pt-5 items-center">
-              <div>
-                <span className="bg-gray-500 text-xs text-white font-bold px-2 py-3 rounded-full">
-                  50%
-                </span>
-              </div>
-              <div className="">
-                <h3>Business Studies</h3>
-                <div className="w-[230px] rounded-md h-2 bg-gray-300">
-                  <div
-                    className={`h-full rounded-md ${colorClass}`}
-                    style={{ width: `${progress}%` }}
-                  ></div>
-                  <div></div>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-between my-3 bg-slate-200 rounded-md p-3 pt-5 items-center">
-              <div>
-                <span className="bg-gray-500 text-xs text-white font-bold px-2 py-3 rounded-full">
-                  50%
-                </span>
-              </div>
-              <div className="">
-                <h3>DSA</h3>
-                <div className="w-[230px] rounded-md h-2 bg-gray-300">
-                  <div
-                    className={`h-full rounded-md ${colorClass}`}
-                    style={{ width: `${progress}%` }}
-                  ></div>
-                  <div></div>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-between my-3 bg-slate-200 rounded-md p-3 pt-5 items-center">
-              <div>
-                <span className="bg-gray-500 text-xs text-white font-bold px-2 py-3 rounded-full">
-                  50%
-                </span>
-              </div>
-              <div className="">
-                <h3>Computer Fundamental</h3>
-                <div className="w-[230px] rounded-md h-2 bg-gray-300">
-                  <div
-                    className={`h-full rounded-md ${colorClass}`}
-                    style={{ width: `${progress}%` }}
-                  ></div>
-                  <div></div>
-                </div>
-              </div>
-            </div>
+          <div className="bg-gradient-to-r  from-purple-400 via-pink-500 to-red-500 rounded-lg shadow-lg p-6">
+            <h2 className="text-2xl font-bold text-white mb-6">Notice Board</h2>
+            <ul className="space-y-4 h-[60vh] px-5  overflow-y-auto">
+              <li className="bg-white rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Important Notice
+                </h3>
+                <p className="text-gray-700">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </li>
+              <li className="bg-white rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Upcoming Event
+                </h3>
+                <p className="text-gray-700">
+                  Sed do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua.
+                </p>
+              </li>
+              <li className="bg-white rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Reminder
+                </h3>
+                <p className="text-gray-700">
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris.
+                </p>
+              </li>
+              <li className="bg-white rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Reminder
+                </h3>
+                <p className="text-gray-700">
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris.
+                </p>
+              </li>
+              <li className="bg-white rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Reminder
+                </h3>
+                <p className="text-gray-700">
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris.
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="bg-white mb-10 w-full rounded-md p-5 shadow-lg">
