@@ -1,5 +1,5 @@
+'use client';
 import mykey from "./KhaltiKey";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 let config = {
@@ -9,7 +9,7 @@ let config = {
     "productName": "Drogon",
     "productUrl": "http://localhost:3000",
     "eventHandler": {
-        onSuccess (payload) {
+        onSuccess(payload) {
             // const order = {
             //     amount:payload.amount,
             //     number:payload.mobile,
@@ -23,11 +23,11 @@ let config = {
             // window.location.reload(false);
         },
         // onError handler is optional
-        onError (error) {
+        onError(error) {
             // handle errors
             console.log(error);
         },
-        onClose () {
+        onClose() {
             console.log('widget is closing');
         }
     },

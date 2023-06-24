@@ -1,3 +1,4 @@
+'use client';
 import NavBar from "@/component/NavBar";
 import Khalti from "@/component/khalti/Khalti";
 import React from "react";
@@ -14,7 +15,7 @@ const index = () => {
       <NavBar />
       <div className=" ml-56 pt-20  px-5">
         <div className="flex justify-end">
-          <Khalti/>
+          <Khalti />
           {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Pay Your Fees
           </button> */}
@@ -28,7 +29,7 @@ const index = () => {
             </tr>
           </thead>
           <tbody>
-            {payments.map((payment, index) => (
+            {payments?.map((payment, index) => (
               <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
                 <td className="py-2 px-4 text-center border-b">
                   {payment.date}
