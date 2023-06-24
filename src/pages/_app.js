@@ -11,8 +11,8 @@ export default function App({ Component, pageProps }) {
   const isLogin = getLoginState();
   useEffect(() => {
     if (isLogin) {
-      // router.push("/dashboard");
-    }else{
+      router.push("/dashboard");
+    } else {
       router.push("/signin");
     }
   }, []);
