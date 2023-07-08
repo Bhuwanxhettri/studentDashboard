@@ -3,11 +3,12 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
 import api from "../api/axios";
 import { message } from "antd";
-
+import { FiLink, FiLock } from "react-icons/fi";
 const Assignment = () => {
   const router = useRouter();
   const { id } = router.query;
   const [assignments, setAssignments] = useState([]);
+  const [meetingLink, setMeetingLink] = useState();
   const [notes, setNotes] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
@@ -17,6 +18,14 @@ const Assignment = () => {
       setAssignments(res.data);
     }
   };
+
+  const meetingLinks = async () => {
+    const res = await api.get(`/all/meetinglist/${id}`);
+    if (res) {
+      setMeetingLink(res.data);
+    }
+
+  }
 
   const fetchNotes = async () => {
     const res = await api.get(`/student/note/${id}`);
@@ -29,6 +38,7 @@ const Assignment = () => {
     if (id) {
       fetchAssignment();
       fetchNotes();
+      meetingLinks();
     }
   }, [id, refresh]);
 
@@ -150,6 +160,47 @@ const Assignment = () => {
     <div>
       <NavBar />
       <div className="ml-56  px-5">
+      <h4 className="text-xl py-5 font-sans font-bold text-[#094354]">
+            Meeting Details
+          </h4>
+          <hr className="border-gray-400" />
+        <div className="container h-[60vh] overflow-y-auto  mx-auto px-4 py-8">
+          {meetingLink?.map((item, id) => {
+            return <>
+              <div key={item.id} className="bg-white rounded-lg  overflow-x-auto shadow-md p-6">
+                <div className="flex items-center mb-4">
+                  <h2 className="text-2xl font-bold mr-2">{item.title}</h2>
+                </div>
+                <div className="mb-6">
+                  <div className="flex items-center text-gray-700 font-bold mb-2">
+                    <FiLink className="mr-2" />
+                    Join URL:
+                  </div>
+                  <a target="_blank" href={item.joinUrl} className="text-blue-500 underline">
+                    {item.joinUrl}
+                  </a>
+                </div>
+                <div className="mb-6">
+                  <div className="flex items-center text-gray-700 font-bold mb-2">
+                    <FiLink className="mr-2" />
+                    Start URL:
+                  </div>
+                  <a target="_blank" href={item.startUrl} className="text-blue-500 underline">
+                    {item.startUrl}
+                  </a>
+                </div>
+                <div>
+                  <div className="flex items-center text-gray-700 font-bold mb-2">
+                    <FiLock className="mr-2" />
+                    Password:
+                  </div>
+                  <p className="text-gray-900">{item.password}</p>
+                </div>
+              </div>
+            </>
+          })}
+        </div>
+
         <div className="">
           <h4 className="text-xl py-5 font-sans font-bold text-[#094354]">
             Assignment
@@ -167,7 +218,7 @@ const Assignment = () => {
           </h4>
           <hr className="border-gray-400" />
           <div className="overflow-x-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8">
-            {notes.map((notesItem) => (
+            {notes?.map((notesItem) => (
               <div
                 key={notesItem.id}
                 className="cursor-pointer rounded-xl  bg-white p-5"
