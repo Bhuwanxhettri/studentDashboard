@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }) {
     } else {
       router.push("/signin");
     }
-  }, []);
+  }, [isLogin]);
   return (
     <>
       <Head>
