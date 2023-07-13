@@ -3,6 +3,8 @@ import api from "../api/axios";
 import { useDispatch } from "react-redux";
 import { login } from "../../../store/features/authSlice";
 import { useRouter } from "next/router";
+import Link from "next/link";
+
 
 const index = () => {
   const [email, setEmail] = useState("");
@@ -91,7 +93,7 @@ const index = () => {
                         Password
                       </label>
                     </div>
-                    <div className="relative">
+                    <div className="relative mb-4">
                       <button
                         type="submit"
                         onClick={() => {
@@ -103,6 +105,14 @@ const index = () => {
                         {loading ? "Loading..." : "Login"}
                       </button>
                     </div>
+
+                    <Link href="/forgetPassword"
+                    >
+                      <span className="text-blue-500 hover:underline text-sm text-end mt-6">
+                        Froget Passowrd
+                      </span>
+                    </Link>
+                    <span></span>
                   </form>
                 </div>
               </div>
