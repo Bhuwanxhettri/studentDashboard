@@ -160,10 +160,10 @@ const Assignment = () => {
     <div>
       <NavBar />
       <div className="ml-56  px-5">
-      <h4 className="text-xl py-5 font-sans font-bold text-[#094354]">
-            Meeting Details
-          </h4>
-          <hr className="border-gray-400" />
+        <h4 className="text-xl py-5 font-sans font-bold text-[#094354]">
+          Meeting Details
+        </h4>
+        <hr className="border-gray-400" />
         <div className="container h-[60vh] overflow-y-auto  mx-auto px-4 py-8">
           {meetingLink?.map((item, id) => {
             return <>

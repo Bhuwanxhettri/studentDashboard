@@ -9,10 +9,14 @@ import HitMaps from "@/component/charts/HitMaps";
 
 const Result = () => {
   const [profile, setProfile] = useState("");
+  const [notice, setNotice] = useState([]);
   const [progress, setProgress] = useState(0);
   const getProfile = () => {
     api.get("/auth/users/me").then((res) => {
       setProfile(res.data);
+    })
+    api.get("/student/notification").then((res) => {
+      setNotice(res.data.data)
     });
   };
   useEffect(() => {
@@ -60,7 +64,7 @@ const Result = () => {
             <AiOutlineCheckCircle size={24} className="mt-[-20px] " />
             <p className="text-3xl font-serif font-bold mb-3 pt-4 text-black">
               {" "}
-              23
+              2
             </p>
             Complated Course
           </div>
@@ -90,53 +94,24 @@ const Result = () => {
             <h2 className="text-xl font-bold font-serif mx-5 py-2">Reports</h2>
             <Reports />
           </div>
-          <div className="bg-gradient-to-r  from-purple-400 via-pink-500 to-red-500 rounded-lg shadow-lg p-6">
-            <h2 className="text-2xl font-bold text-white mb-6">Notice Board</h2>
-            <ul className="space-y-4 h-[60vh] px-5  overflow-y-auto">
-              <li className="bg-white rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  Important Notice
-                </h3>
-                <p className="text-gray-700">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-              </li>
-              <li className="bg-white rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  Upcoming Event
-                </h3>
-                <p className="text-gray-700">
-                  Sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua.
-                </p>
-              </li>
-              <li className="bg-white rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  Reminder
-                </h3>
-                <p className="text-gray-700">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris.
-                </p>
-              </li>
-              <li className="bg-white rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  Reminder
-                </h3>
-                <p className="text-gray-700">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris.
-                </p>
-              </li>
-              <li className="bg-white rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  Reminder
-                </h3>
-                <p className="text-gray-700">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris.
-                </p>
-              </li>
+          <div className="bg-gradient-to-r  from-purple-400  to-red-500 rounded-lg shadow-lg py-6 px-2">
+            <h2 className="text-2xl font-bold text-white mb-6" >Notice Board</h2>
+            <ul className="space-y-4 h-[60vh]   overflow-y-auto">
+              {notice?.map((item) => (
+                <li className="bg-white rounded-lg px-3 py-4" key={item.id}>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    {item.title}
+                    <span className="text-xs">                     ({item.subjectId.subject_name})</span>
+
+                  </h3>
+                  <p className="text-gray-700 text-sm">
+                    {item.body}
+                  </p>
+                </li>
+              ))}
+
+
+
             </ul>
           </div>
         </div>

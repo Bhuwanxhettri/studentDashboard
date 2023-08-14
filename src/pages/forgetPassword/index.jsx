@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../api/axios';
 import { useRouter } from "next/router";
+import { message } from "antd"
 
 const index = () => {
     const [showOTPForm, setShowOTPForm] = useState(false);
@@ -31,9 +32,23 @@ const index = () => {
                 password: newPassword
             });
             if (res) {
-                router.push("/sigin");
+                message.open({
+                    type: 'success',
+                    content: res.data.message,
+                });
+
+                setTimeout(() => {
+                    router.push("/sigin");
+                }, 3000)
+
             }
         } catch (err) {
+            // message.open(err.response.data.message)
+
+            message.open({
+                type: 'error',
+                content: err.response.data.message,
+            });
             console.log(err);
         }
     }
